@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .icone {
+    width: 160px;
+    height: 160px;
+    margin-left: 21%; 
+    border-radius: 3%;
+  }
+</style>
+
+
+<!--  START NAV BAR -->
+<nav class="navbar navbar-expand-md navbar-primary bg-light">
+    <a class="navbar-brand text-secondary two" href="/">
+       Home
+       <img class="navbar-toggler-icon one" src="{% static 'images/home.png' %}">
+    </a>
+
+    <button class="bg-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <img class="navbar-toggler-icon" src="{% static 'images/13.png' %}">
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul dir="ltr" class="navbar-nav mr-auto">
+           {% if user.is_authenticated %}
+                <li class="mav--item">
+                    <a class="nav-link" href="profile/{{ user.username }}/">profile</a>
+                </li>
+           {% else %}
+                <li class="mav--item">
+                    <a class="nav-link" href="{% url 'login' %}">login</a>
+                </li>
+            {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">about</a>
+                </li>
+        </ul>
+    <!-- form search -->
+    <form method="get" action="post/" class="form-inline mt-2 mt-md-0">
+      <input  value="{{ request.GET.q }}" name="q" class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search" id="q">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search <img class="navbar-toggler-icone" src="{% static 'img/search.svg' %}">
+      </button>
+    </form>
+
+
+    </div>
+
+</nav>
+<!--     END NAV BAR -->
+
+<main role="main">
+  <section class="jumbotron text-center">
+<div class="container">
+        <h1 class="jumbotron-heading">Codex {
+        {% if user.is_authenticated %}
+       <img src="{{ user.profile.image.url }}" class="img3">
+         {% endif %} } Frex</h1>
+        <p class="lead text-muted">learn now python and django framework just in CoDex-FRexe for Free </p>
+      {% if user.is_authenticated %}
+        <p>
+        <a href="{% url 'logout' %}" class="btn btn-danger my-2">Logout {{ user }}</a>
+      {% else %}
+          <a href="{% url 'home:signup' %}" class="btn btn-primary my-2">Sign UP
+          </a>
+          <a href="{% url 'login' %}" class="btn btn-secondary my-2">Login</a>
+        </p>
+      {% endif %}
+      </div>
+  </section>
+
+
+   {% if home %}
+   <div class="album py-5 bg-light">
+ <div class="container">
+  <div class="row">
+     {% for homes  in home %}
+           <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                      <div class="card-body">
+                      <h4 class="text-danger text-penter text-center mb-3">{{ homes.title }}</h4>
+                    <img class="icone" src="{{ homes.image.url }}">
+                    <br><br />
+                     <a href="{{ homes.link }}" class="btn btn-outline-primary btn-block">Learn More</a>
+                  <small class="text-muted">{{ homes.content }}</small>
+               </div>
+              </div>
+            </div>
+ 
+     {% endfor %}
+      </div>
+      </div>
+      </div>
+     </main>
+   {% else %}
+     <p class="text-center">No Post Available Now please try again ...</p>
+   {% endif %}
+{% endblock %}
+

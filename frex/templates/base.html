@@ -1,0 +1,83 @@
+{% load static %}
+{% load bootstrap4 %}
+<html lang="ar">
+<head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>{% block title %} Home {% endblock %}</title>
+    
+   <style>
+    .im_age {
+     height: 100px;
+     width: 100px;
+     border-radius: 50%;
+    }
+   .one {
+     border-radius: 50%;
+   }
+   .two {
+     font-weight: bold;
+   }
+   .tree {
+     background: black;
+   }
+   .img1 {
+     background-image: url("{% static 'images/13.jpg' %}");
+     background-position: center;
+     background-size: 100% 100%;
+     border-radius: 2px;
+     height: 100%;
+   }
+   .img2 {
+      background-image: url("{% static 'images/1.jpg' %}");
+      background-position: center;
+      background-size: 100% 100%;
+      border-radius: 2px;
+      height: 100%;
+   }
+   .img3 {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 0px solid black;
+   }
+   .img4 {
+     height: 140px;
+     width: 130px;
+     border-radius: 3%;
+     margin-left: 1%;
+
+   }
+   </style>
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+<div class="container-fluid">
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020-2021 Abdljbbar ait jeddi</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="/">Home</a></li>
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script src="{% static 'jquery.js' %}"></script>
+<script src="{% static 'javascript.js' %}"></script>
+</body>
+<html>

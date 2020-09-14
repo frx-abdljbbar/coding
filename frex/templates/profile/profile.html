@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .icone {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+  }
+</style>
+
+  <center>
+    <br>
+{% if user == profile.user %}
+<a style="margin-right: 60%;" class="btn my-2 my-sm-0 btn-outline-success" href="{% url 'profille:edit_profile' profile.slug %}">
+   Edit Profile <img class="navbar-toggler-icone" src="{% static 'img/icon-addlink.svg' %}">
+ </a>
+{% endif %}
+{% if not profile.image %}
+   <img class="card im_age" src="{% static 'images/1.jpg' %}">
+{% else %}
+<img class="card icone" src="{{ profile.image.url }}">
+<br>
+{% endif %}
+<h4 class="text-dark">{{ profile.user }}</h4>
+<small class="text-center text-info">i'm {{ profile.user.first_name }} {{ profile.user.last_name }}</small>
+<p class="text-primary">{{ profile.user.email }}</p>
+  </center>
+  
+<div class="container">
+  <div class="card bg-light">
+  <h1 class="text-center lead text-dark">
+    {{ profile.headline }}
+  </h1></div>
+  <div>
+  <br>
+ <div class="alert alert-info alert-dismissable">
+   <p class="text-dark lead">
+   {{ profile.bio | escape | linebreaks }}
+   </p>
+  </div>
+  </div>
+</div>
+ 
+{% if user == profile.user %}
+
+<div class="container">
+  <button type="button" data-toggle="modal" data-target="#myModal" class="btn-block btn-outline-info text-success lead">Account security</button>
+  <div id="myModal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Account security</h3>
+          <button data-dismiss="modal" class="btn-danger">X</button>
+        </div>
+        <div class="modal-body">
+       <a class="text-center text-danger card nav-link" href="{% url 'password_change' %}">Change Password</a>
+      </div>
+        <div class="modal-body">
+      <a class="text-center card nav-link text-danger" href="{% url 'password_reset' %}">Forget Password</a>
+       </div>
+      </div>
+    </div>
+  </div>
+</div> 
+<br>
+ <center> <a class="btn my-2 my-sm-0 btn-outline-danger" href="{% url 'logout' %}">
+  Logout <img class="navbar-toggler-icone" src="{% static 'img/icon-no.svg' %}">
+ </a></center>
+{% else %}
+
+<a href="/" class="btn btn-block my-2 my-sm-0 btn-outline-primary">Home</a>
+<a href="#"class="btn btn-block my-2 my-sm-0 btn-outline-primary">About us</a>
+
+{% endif %}
+{% if user.is_authenticated %}
+
+{% else %}
+<br>
+<div class="container">
+<center>
+<p>Sign UP now to add your profile<p>
+  <a class="btn btn-block my-2 my-sm-0 btn-outline-primary" href="{% url 'login' %}">Login</a>
+  <a class="btn btn-block my-2 my-sm-0 btn-outline-primary" href="{% url 'home:signup' %}">Sign UP</a>
+</center>
+</div>
+{% endif %}
+
+{% endblock %}

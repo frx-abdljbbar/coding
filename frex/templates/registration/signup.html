@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+  .icone {
+    margin-top: 40px;
+    margin-bottom: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    top: -40px;
+    left: calc(50% - 40px);
+  }
+</style>
+<div class="container">
+<div class="row">
+<div class="col-md-9 m-auto">
+<form method='POST' class="card" style="padding: 20px;">
+    <img class="icone" src="{% static 'images/31.png' %}">
+        {% csrf_token %}
+      <div class='one'>
+        {% bootstrap_form form %}
+     <div>
+    <div class="form-group">
+   <button class="btn btn-success btn-block">Register</button>
+ </div>
+<a href="{% url 'login' %}" class="nav-link text-bold text-primary lead">Login Now</a>
+<form>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+  .icone {
+    margin-top: 20px;
+    margin-bottom: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    top: -40px;
+    left: calc(50% - 40px);
+  }
+</style>
+
+<div class="container">
+<div class="row">
+<div class="col-md-9 m-auto">
+<br>
+  <form method='POST' class="card">
+    <img class="icone" src="{% static 'images/11.png' %}">
+      <h1 class='h2 text-center one'>Login</h1>
+          {% csrf_token %}
+      <div class='one'>
+          {{ form | crispy }}
+    <div>
+    <br>
+    <div class="form-group">
+    <button class="btn btn-primary btn-block">Login</button>
+       <br>
+       <a class="nav-link" href="{% url 'home:signup' %}"><strong>create your accounts</strong></a>
+       <a class="nav-link" href="{% url 'password_reset' %}">Forget password</a>
+    </div>
+  <form>
+</div>
+</div>
+</div>
+{% endblock %}

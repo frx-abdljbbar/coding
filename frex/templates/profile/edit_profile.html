@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class='container'>
+   <h4 class="bg-light text-center text-primary">Edit your profile {{ user }}</h4>
+    <form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {% bootstrap_form profile_form %}
+    {% bootstrap_form user_form %}
+
+<button class='btn btn-block btn-success' type="submit">Save</button>
+</form>
+</div>
+{% endblock %}
